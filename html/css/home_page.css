@@ -1,0 +1,61 @@
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: darkseagreen;
+  color: darkseagreen;
+}
+
+.tab button {
+  background-color: darkseagreen;
+  color: blanchedalmond;
+  font-weight: bold;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+.tab button:hover {
+  background-color: dodgerblue;
+}
+
+.tab button.active {
+  background-color: cornflowerblue;
+}
+
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid cornflowerblue;
+  border-top: none;
+}
+
+.tabcontent {
+  animation: fadeEffect 1s; /* Fading effect takes 1 second */
+}
+
+/* Go from zero to full opacity */
+@keyframes fadeEffect {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+iframe:focus {
+  outline: none;
+}
+
+iframe[seamless] {
+  display: block;
+}
+
+iframe {
+  width: 100%;
+  height: 100vh;
+}
+
+.auth_button button {
+    padding: 10px 24px;
+    border-radius: 12px
+}
