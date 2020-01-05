@@ -1,11 +1,24 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <link href="./css/home_page.css" rel="stylesheet">
 </head>
 <body>
-    <div id="chart1" style="height: 370px; width: 50%;"></div>
-    <div id="chart2" style="height: 370px; width: 50%;"></div>
-    <div id="chart3" style="height: 370px; width: 50%;"></div>
+    <div class="tab">
+        <button class="tabLinks" onclick="openTab(event, '电价')" id="默认">电价</button>
+        <button class="tabLinks" onclick="openTab(event, '充放电')">充放电</button>
+        <button class="tabLinks" onclick="openTab(event, '电池电量')">电池电量</button>
+    </div>
+    <div id="电价" class="tabContent">
+        <div id="chart_电价" style="height: 370px; width: 50%;"></div>
+    </div>
+    <div id="充放电" class="tabContent">
+        <div id="chart_充放电" style="height: 370px; width: 50%;"></div>
+    </div>
+    <div id="电池电量" class="tabContent">
+        <div id="chart_电池电量" style="height: 370px; width: 50%;"></div>
+    </div>
 </body>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script src="./js/chart.js"></script>
