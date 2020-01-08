@@ -1,0 +1,27 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link href="./css/grid.css" rel="stylesheet">
+</head>
+<body>
+    <h1>Simple Power Grid</h1>
+    <svg width = 1000 height = 800 xmlns="http://www.w3.org/2000/svg" version="1.1" >
+        # nodes
+        <circle cx="100" cy="50" r="5"></circle>
+        <circle cx="200" cy="50" r="5"></circle>
+        <circle cx="300" cy="50" r="5"></circle>
+        <circle cx="200" cy="200" r="5"></circle>
+
+        # slack bus
+        <line class = 'slack bus' x1="80" y1="20" x2="120" y2="20" stroke="black" stroke-width="8"></line>
+
+        # lines
+        <line class = 'line' x1="100" y1="20" x2="100" y2="50"></line>
+        <line class = 'line' x1="100" y1="50" x2="200" y2="50"></line>
+        <line class = 'line' x1="200" y1="50" x2="300" y2="50"></line>
+        <line class = 'line' x1="200" y1="50" x2="200" y2="200"></line>
+    </svg>
+
+</body>
+    <script src="./js/grid.js"></script>
+</html>
