@@ -1,0 +1,30 @@
+import matplotlib.pyplot as plt
+
+XLABEL = 'Hour'
+
+# x : array for x-axis
+# y : array for y-axis
+
+def plot_bar(x, y, xlabel, ylabel, ax):
+    ax.bar(x, y)
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylabel)
+
+
+def plot_line(x, y, xlabel, ylabel, ax):
+    ax.plot(x, y)
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylabel)
+
+    
+def plot_results(power, energy):
+    
+    hours = range(24)
+    fig, (ax1, ax2) = plt.subplots(2)
+    fig.suptitle('Vertically stacked subplots')
+
+    plot_bar(hours, power, XLABEL, 'Charging Power (kW)', ax1)
+    
+    plot_line(hours, energy, XLABEL, 'Battery Energy (kWh)', ax2)
+    
+    plt.show()
