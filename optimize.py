@@ -11,9 +11,7 @@ eta_dsg = 0.95  # discharging efficiency
 E_min = 0.1  # minimal energy coefficient
 E_max = 0.95
 
-def OptimalBatteryDispatch(P, E, debug=False):
-    pi_energy = get_lmp(5, 200, debug)
-    pi_energy.reshape(1, H)
+def OptimalBatteryDispatch(pi_energy, P, E, debug=False):
     # define decision variables
     P_chg = cp.Variable(H)
     P_dsg = cp.Variable(H)
@@ -21,7 +19,7 @@ def OptimalBatteryDispatch(P, E, debug=False):
     gamma = cp.Variable(H, boolean=True)
 
     # objective functions
-    objective = cp.Minimize(pi_energy * (P_chg - P_dsg))
+    objective = cp.Minimize(pi_energy @ (P_chg - P_dsg))
 
     # constraints
     constraints = []
@@ -39,8 +37,8 @@ def OptimalBatteryDispatch(P, E, debug=False):
 
     # form the problem and solve.
     prob = cp.Problem(objective, constraints)
-    print('start solving the problem')
-    prob.solve(verbose=False)
+    
+    prob.solve(verbose=False, options={'glpk':{'msg_lev':'GLP_MSG_OFF'}})
 
     result_power = np.round(P_chg.value - P_dsg.value, 2)
 
@@ -62,9 +60,18 @@ def OptimalBatteryDispatch(P, E, debug=False):
 
 
 if __name__ == "__main__":
+    debug = False
+    
+    # get LMP
+    seed = 5
+    day = 200
+    pi_energy = get_lmp(seed, day, debug)
+    pi_energy.reshape(1, H)
+    
     P = 25  # battery power rating, kW
     E = 100  # battery energy rating, kWh
-    (obj, gamma, result_P, result_E) = OptimalBatteryDispatch(P, E, True)
+    (obj, gamma, result_P, result_E) = OptimalBatteryDispatch(pi_energy, P, E, debug)
     
+    # Plot the results.
     plot_results(result_P, result_E)
     
