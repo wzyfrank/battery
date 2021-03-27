@@ -1,4 +1,5 @@
 from lmp_reader import get_lmp
+from plot_util import plot_results
 import cvxpy as cp
 import numpy as np
 
@@ -56,10 +57,14 @@ def OptimalBatteryDispatch(P, E, debug=False):
         print('\n')
         print('the energy stored are: ')
         print(result_energy)
-
+    
+    return (prob.objective.value, gamma.value, result_power, result_energy)
 
 
 if __name__ == "__main__":
     P = 25  # battery power rating, kW
     E = 100  # battery energy rating, kWh
-    OptimalBatteryDispatch(P, E, True)
+    (obj, gamma, result_P, result_E) = OptimalBatteryDispatch(P, E, True)
+    
+    plot_results(result_P, result_E)
+    
